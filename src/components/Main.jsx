@@ -23,7 +23,7 @@ export default function Main() {
                 <button type="submit"> Add ingredient</button>
             </form>
 
-           {ingredients.length === 0? <ul className="ingredients-list" aria-live="polite">{ingredientList}</ul>: 
+           {ingredients.length < 4 ? <ul className="ingredients-list" aria-live="polite">{ingredientList}</ul>: 
                 
            <section>
                 <h2>Ingredients on hand:</h2>
