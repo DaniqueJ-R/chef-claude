@@ -1,5 +1,6 @@
 import React from 'react' 
 import ClaudeRecipe from './ClaudeRecipe'
+import IngredientsList from './IngredientsList'
 
 export default function Main() {
     /**
@@ -9,8 +10,6 @@ export default function Main() {
      * have now is bad or wrong. I'm mostly finding an excuse
      * to get in some hands-on practice 🙂)
      * 
-     * 1. Move the entire recipe <section> into its own
-     *    ClaudeRecipe component
      * 2. Move the list of ingredients <section> into its
      *    own IngredientsList component.
      * 
@@ -23,9 +22,7 @@ export default function Main() {
      * done, so there will likely be some extra work to be done
      * beyond what I've listed above.
      */
-    const [ingredients, setIngredients] = React.useState(
-        ["all the main spices", "pasta", "ground beef", "tomato paste"]
-    )
+    const [ingredients, setIngredients] = React.useState(['fish']) //tay
 
 
     const [recipeShown, setRecipeShown] = React.useState(false)
@@ -36,8 +33,8 @@ export default function Main() {
 
 
     const ingredientList = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
-    ))
+        <IngredientsList key={ingredient} ingredient={ingredient} />
+    )) 
 
     function addIngredients(formData) {
         const newIngredient = formData.get("ingredient")
@@ -54,7 +51,7 @@ export default function Main() {
                 <button type="submit"> Add ingredient</button>
             </form>
 
-           {ingredients.length < 4 ? <ul className="ingredients-list" aria-live="polite">{ingredientList}</ul>: 
+            {ingredients.length < 4 ? <ul className="ingredients-list" aria-live="polite">{ingredientList}</ul>: 
                 
            <section>
                 <h2>Ingredients on hand:</h2>
