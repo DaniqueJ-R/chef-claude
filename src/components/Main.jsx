@@ -22,7 +22,7 @@ export default function Main() {
      * done, so there will likely be some extra work to be done
      * beyond what I've listed above.
      */
-    const [ingredients, setIngredients] = React.useState(['fish','lime','rice']) 
+    const [ingredients, setIngredients] = React.useState([]) 
 
 
     const [recipeShown, setRecipeShown] = React.useState(false)
