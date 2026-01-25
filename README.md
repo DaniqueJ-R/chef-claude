@@ -1,16 +1,63 @@
-# React + Vite
+# Chef Claude - AI Recipe Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React web app that transforms your available ingredients into custom recipes using AI. Enter any ingredients you have on hand, and after adding four, Claude AI generates a complete recipe tailored to what's in your kitchen.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Ingredient Input**: Add ingredients one by one to build your recipe base
+- **AI Recipe Generation**: Powered by Anthropic's Claude API to create custom recipes
+- **Dynamic UI**: Real-time updates as you add ingredients
+- **Responsive Design**: Works seamlessly across desktop and mobile devices
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** - Component-based UI framework
+- **CSS** - Custom styling
+- **Anthropic API** - AI-powered recipe generation
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js installed on your machine
+- Anthropic API key
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/DaniqueJ-R/chef-claude
+cd chef-claude
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory and add your API key
+```
+REACT_APP_ANTHROPIC_API_KEY=your_api_key_here
+```
+
+4. Start the development server
+```bash
+npm start
+```
+
+5. Open [http://localhost:5173](http://localhost:5173/) to view it in your browser
+
+## Usage
+
+1. Enter ingredients into the input field
+2. Add at least 4 ingredients to unlock recipe generation
+3. Click "Get a recipe" to generate your custom recipe
+4. View your AI-generated recipe with instructions
+
+## Live Demo
+
+[View Live Site](https://chef-claude-proj.vercel.app/)
+
+## License
+
+This project is open source and available under the MIT License.
