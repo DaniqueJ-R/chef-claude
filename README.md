@@ -1,26 +1,26 @@
 # Chef Claude - AI Recipe Generator
 
-A React web app that transforms your available ingredients into custom recipes using AI. Enter any ingredients you have on hand, and after adding four, Claude AI generates a complete recipe tailored to what's in your kitchen.
+A React web app that transforms your available ingredients into custom recipes. Enter any ingredients you have on hand, and the app generates a complete recipe tailored to what's in your kitchen.
 
 ## Features
 
 - **Ingredient Input**: Add ingredients one by one to build your recipe base
-- **AI Recipe Generation**: Powered by Anthropic's Claude API to create custom recipes
+- **Recipe Generation**: Generates creative recipes based on your ingredients
 - **Dynamic UI**: Real-time updates as you add ingredients
 - **Responsive Design**: Works seamlessly across desktop and mobile devices
 
 ## Tech Stack
 
 - **React** - Component-based UI framework
+- **Vite** - Modern build tool
+- **Node.js** - Backend server
 - **CSS** - Custom styling
-- **Anthropic API** - AI-powered recipe generation
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js installed on your machine
-- Anthropic API key
 
 ### Installation
 
@@ -35,17 +35,19 @@ cd chef-claude
 npm install
 ```
 
-3. Create a `.env` file in the root directory and add your API key
-```
-REACT_APP_ANTHROPIC_API_KEY=your_api_key_here
-```
+3. Start the development servers in separate terminals
 
-4. Start the development server
+Terminal 1 - Start Vite:
 ```bash
-npm start
+npm run dev
 ```
 
-5. Open [http://localhost:5173](http://localhost:5173/) to view it in your browser
+Terminal 2 - Start the API server:
+```bash
+node server.js
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) to view the app
 
 ## Usage
 
