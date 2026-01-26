@@ -4,7 +4,7 @@ import IngredientsList from './IngredientsList'
 
 export default function Main() {
 
-    const [ingredients, setIngredients] = React.useState(['salmon', 'rice', 'lemon', 'cheese']) 
+    const [ingredients, setIngredients] = React.useState([]) 
     const [aiRecipe, setAiRecipe] = React.useState("")
     const [recipeShown, setRecipeShown] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
