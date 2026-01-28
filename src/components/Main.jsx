@@ -1,40 +1,28 @@
 import React from 'react' 
 import ClaudeRecipe from './ClaudeRecipe'
 import IngredientsList from './IngredientsList'
-import {  getRecipeFromMistral } from "/chat"
 
+// fetching api call
+export async function getRecipeFromMistral(ingredientsArr) {
+    try {
+        const response = await fetch('/api/get-recipe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ingredients: ingredientsArr })
+        })
+        
+        const data = await response.json()
+        return data.recipe
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+}
 
 export default function Main() {
 
-    const [ingredients, setIngredients] = React.useState(['salmon', 'rice', 'lemon', 'cheese']) 
+    const [ingredients, setIngredients] = React.useState([]) 
     const [aiRecipe, setAiRecipe] = React.useState("")
-
-    // async function getRecipe() {
-    //     setLoading(true)
-    //     try {
-    //         const response = await fetch('/api/chat', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify({ ingredients })
-    //         })
-    //         console.log('Response status:', response.status)
-    //         const text = await response.text()
-    //         console.log('Response text:', text)
-            
-    //         if (!response.ok) {
-    //             throw new Error(`API error: ${response.status} - ${text}`)
-    //         }
-            
-    //         const data = JSON.parse(text)
-    //         setAiRecipe(data.recipe)
-    //     } catch (error) {
-    //         console.error('Error:', error)
-    //         setAiRecipe(`Error generating recipe: ${error.message}`)
-    //     } finally {
-    //         setLoading(false)
-    //     }
-    // }
-
 
     async function getRecipe() {
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
