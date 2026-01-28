@@ -1,43 +1,44 @@
 import React from 'react' 
 import ClaudeRecipe from './ClaudeRecipe'
 import IngredientsList from './IngredientsList'
+import {  getRecipeFromMistral } from "/chat"
+
 
 export default function Main() {
 
-    const [ingredients, setIngredients] = React.useState([]) 
+    const [ingredients, setIngredients] = React.useState(['salmon', 'rice', 'lemon', 'cheese']) 
     const [aiRecipe, setAiRecipe] = React.useState("")
-    const [recipeShown, setRecipeShown] = React.useState(false)
-    const [loading, setLoading] = React.useState(false)
+
+    // async function getRecipe() {
+    //     setLoading(true)
+    //     try {
+    //         const response = await fetch('/api/chat', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify({ ingredients })
+    //         })
+    //         console.log('Response status:', response.status)
+    //         const text = await response.text()
+    //         console.log('Response text:', text)
+            
+    //         if (!response.ok) {
+    //             throw new Error(`API error: ${response.status} - ${text}`)
+    //         }
+            
+    //         const data = JSON.parse(text)
+    //         setAiRecipe(data.recipe)
+    //     } catch (error) {
+    //         console.error('Error:', error)
+    //         setAiRecipe(`Error generating recipe: ${error.message}`)
+    //     } finally {
+    //         setLoading(false)
+    //     }
+    // }
+
 
     async function getRecipe() {
-        setLoading(true)
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ingredients })
-            })
-            console.log('Response status:', response.status)
-            const text = await response.text()
-            console.log('Response text:', text)
-            
-            if (!response.ok) {
-                throw new Error(`API error: ${response.status} - ${text}`)
-            }
-            
-            const data = JSON.parse(text)
-            setAiRecipe(data.recipe)
-        } catch (error) {
-            console.error('Error:', error)
-            setAiRecipe(`Error generating recipe: ${error.message}`)
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    function recipeToggle () {
-        getRecipe()
-        setRecipeShown(prevShown => !prevShown)
+        const recipeMarkdown = await getRecipeFromMistral(ingredients)
+            setAiRecipe(recipeMarkdown)
     }
 
     function addIngredients(formData) {
@@ -55,10 +56,10 @@ export default function Main() {
                 <button type="submit"> Add ingredient</button>
             </form>
 
-            <IngredientsList ingredients={ingredients} clickFunc={recipeToggle}/>
+            <IngredientsList ingredients={ingredients} clickFunc={getRecipe}/>
             
 
-            {recipeShown && <ClaudeRecipe ingredients={loading ? "Loading recipe..." : aiRecipe} />}
+            {aiRecipe && <ClaudeRecipe aiRecipe={aiRecipe} />}
         </main>
     )
 }

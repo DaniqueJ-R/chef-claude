@@ -3,7 +3,7 @@ export default function ClaudeRecipe (props) {
         <section>
             <h2>Chef Claude Recommends:</h2>
             <article className="suggested-recipe-container" aria-live="polite">
-                {props.ingredients}
+                {props.aiRecipe}
             </article>
         </section>
     )
