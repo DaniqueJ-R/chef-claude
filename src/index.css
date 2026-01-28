@@ -65,6 +65,11 @@ main {
     margin-right: 5px;
 }
 
+.add-ingredient-form > button.reset::before {
+    content: "-";
+    margin-right: 5px;
+}
+
 ul.ingredients-list {
     margin-bottom: 48px;
 }

@@ -21,8 +21,9 @@ export async function getRecipeFromMistral(ingredientsArr) {
 
 export default function Main() {
 
-    const [ingredients, setIngredients] = React.useState([]) 
+    const [ingredients, setIngredients] = React.useState(['salmon', 'rice', 'lemon', 'cheese']) 
     const [aiRecipe, setAiRecipe] = React.useState("")
+    const [reset, setReset] = React.useState([])
 
     async function getRecipe() {
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
@@ -31,7 +32,16 @@ export default function Main() {
 
     function addIngredients(formData) {
         const newIngredient = formData.get("ingredient")
+
+        if (!newIngredient){
+            alert('Please add an ingredient to the list')
+        } else (
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+        )
+    }
+
+    function resetIngredients () {
+        setIngredients(reset)
     }
 
     return(
@@ -42,6 +52,7 @@ export default function Main() {
                 placeholder="e.g. salmon" 
                 aria-label="Add Ingredient" />
                 <button type="submit"> Add ingredient</button>
+                <button className='reset' type="reset" onClick={resetIngredients} > Reset</button>
             </form>
 
             <IngredientsList ingredients={ingredients} clickFunc={getRecipe}/>
