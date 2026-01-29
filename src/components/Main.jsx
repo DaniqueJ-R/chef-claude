@@ -27,9 +27,13 @@ export default function Main() {
     const [loading, setloading] = React.useState(false)
 
     async function getRecipe() {
-        console.log('Getting Recipe...')
+        setloading(true)
+        try {
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
-            setAiRecipe(recipeMarkdown)
+            setAiRecipe(recipeMarkdown) 
+        } catch (err) { console.error(err)}
+        finally {setloading(false)}
+
     }
 
     function addIngredients(formData) {
@@ -58,9 +62,8 @@ export default function Main() {
             </form>
 
             <IngredientsList ingredients={ingredients} clickFunc={getRecipe}/>
-            
 
-            {aiRecipe && <ClaudeRecipe aiRecipe={loading ? 'Getting Recipe...' : aiRecipe} />}
+            {loading ? <p className='loading'>Getting Recipe...</p> : aiRecipe && <ClaudeRecipe aiRecipe={aiRecipe} />}
         </main>
     )
 }

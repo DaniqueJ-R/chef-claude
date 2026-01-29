@@ -112,6 +112,13 @@ ul.ingredients-list > li {
     cursor: pointer;
 }
 
+.loading{
+    display: flex;
+    justify-content: space-around;
+    font-size: larger;
+    font-weight: 500;
+}
+
 .suggested-recipe-container {
     color: #475467;
     line-height: 28px;
