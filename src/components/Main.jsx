@@ -21,11 +21,13 @@ export async function getRecipeFromMistral(ingredientsArr) {
 
 export default function Main() {
 
-    const [ingredients, setIngredients] = React.useState(['salmon', 'rice', 'lemon', 'cheese']) 
+    const [ingredients, setIngredients] = React.useState([]) 
     const [aiRecipe, setAiRecipe] = React.useState("")
     const [reset, setReset] = React.useState([])
+    const [loading, setloading] = React.useState(false)
 
     async function getRecipe() {
+        console.log('Getting Recipe...')
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
             setAiRecipe(recipeMarkdown)
     }
@@ -58,7 +60,7 @@ export default function Main() {
             <IngredientsList ingredients={ingredients} clickFunc={getRecipe}/>
             
 
-            {aiRecipe && <ClaudeRecipe aiRecipe={aiRecipe} />}
+            {aiRecipe && <ClaudeRecipe aiRecipe={loading ? 'Getting Recipe...' : aiRecipe} />}
         </main>
     )
 }
